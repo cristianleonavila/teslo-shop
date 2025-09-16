@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Options } from '@products/interfaces/options';
-import { ProductsResponse } from '@products/interfaces/product-response';
+import { Product, ProductsResponse } from '@products/interfaces/product-response';
 import { Observable, tap } from 'rxjs';
 import { environment } from 'src/environments/environment.development';
 
@@ -11,6 +11,8 @@ import { environment } from 'src/environments/environment.development';
 export class ProductService {
 
   private http = inject(HttpClient);
+
+  constructor() { }
 
   getProducts(options: Options): Observable<ProductsResponse>{
 
@@ -26,5 +28,7 @@ export class ProductService {
     );
   }
 
-  constructor() { }
+  getProductById (id: string): Observable<Product> {
+    return this.http.get<Product>(`${environment.baseUrl}/products/${id}`);
+  }
 }
