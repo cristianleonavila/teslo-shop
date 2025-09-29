@@ -44,11 +44,4 @@ export class LoginComponent {
       this.hasError.set(true);
     });
   }
-
-  checkAuthentication() {
-
-  }
-
-
-
 }
